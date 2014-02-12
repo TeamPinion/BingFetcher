@@ -1,4 +1,4 @@
-YahooFetcher
+BingFetcher
 ============
 
-Fetches search results from Yahoo.
+Fetches search results from Bing.
