@@ -15,18 +15,16 @@ public class ParseManager
 	{
 		if(html == null) return;
 		Document doc = Jsoup.parse(html);
-		Element content = doc.getElementById("content");
-		if(content == null) return;
 		int results = 0;
 		
-		Elements links = content.getElementsByTag("a");
+		Elements links = doc.getElementsByTag("a");
 		for (Element link : links) 
 		{
 			
 			  String linkHref = link.attr("href");
 			  String linkText = link.text();
 			  
-			  if(!linkHref.isEmpty() && !linkText.isEmpty() && !linkHref.startsWith("/") && !linkHref.contains("#") && !linkHref.contains("=") && linkHref.contains("http") && isEnglish(linkText))
+			  if(select(linkText,linkHref))
 			  {
 				  if(linkHref.contains("freebase.com")) break;
 				  System.out.println("Link:"+linkHref);
@@ -37,6 +35,16 @@ public class ParseManager
 		}
 		System.out.println("Total Results:"+results);
 		
+	}
+	
+	private static Boolean select(String linkText, String linkHref)
+	{
+		if(!linkHref.isEmpty() && !linkText.isEmpty() && !linkHref.startsWith("/") 
+				&& !linkHref.contains("#") && !linkHref.contains("bingads") && !linkHref.contains("=") 
+				&& linkHref.contains("http") && isEnglish(linkText))
+		   return true;
+		else 
+			return false;
 	}
 	
 	private static Boolean isEnglish(String linkText)
