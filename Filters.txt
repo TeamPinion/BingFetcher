@@ -1,0 +1,5 @@
+1) While doing search use language:en: http://bing.com/search?q=Amazon+language:en
+2) Filter out URLs with # or =
+3) Filter out local URLs i.e. starting with '/'
+4) Find languages other than english in Linktext. If a lot, reject! 
+5) Bing have some freebase website, all results after that are useless. Reject content.

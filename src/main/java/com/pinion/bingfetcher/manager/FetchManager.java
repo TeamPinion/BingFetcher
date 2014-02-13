@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.URL;
 
 import com.pinion.bingfetcher.pageget.PageGetManager;
+import com.pinion.bingfetcher.parse.ParseManager;
 
 public class FetchManager
 {
 	public static void main(String[] args) throws IOException
 	{
 		
-		URL url = new URL("http://bing.com/search?q=Kejriwal");
+		URL url = new URL("http://bing.com/search?q=Amazon+language:en&n=30");
 		String webPage = "";
 		int count = 0;
 		int i=20;
@@ -20,6 +21,7 @@ public class FetchManager
 			if(webPage != null)
 				count++;	
 			System.out.println(count);
+			ParseManager.getLinks(webPage);
 		}
 		
 		
