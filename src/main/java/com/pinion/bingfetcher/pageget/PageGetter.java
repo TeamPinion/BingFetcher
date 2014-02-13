@@ -8,8 +8,14 @@ import java.net.Proxy;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+
 public class PageGetter implements Callable<String>
 {
+	private static Log logger = LogFactory.getLog(PageGetter.class.getName());
+
 	public PageGetter(Proxy proxy, URL url) throws IOException
 	{
 		super();
@@ -38,7 +44,7 @@ public class PageGetter implements Callable<String>
 			in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
 		} catch (IOException e)
 		{
-			System.err.println("Proxy: "+proxy+" failed for URL: "+url);
+			logger.warn("Proxy: "+proxy+" failed for URL: "+url);
 			return null;
 		}
 		try
@@ -49,7 +55,7 @@ public class PageGetter implements Callable<String>
 		} 
 		catch (IOException e)
 		{
-			System.err.println("Proxy: "+proxy+" failed for URL: "+url);
+			logger.warn("Proxy: "+proxy+" failed for URL: "+url);
 			return null;
 		}
 		

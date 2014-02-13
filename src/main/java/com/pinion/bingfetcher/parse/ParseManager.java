@@ -1,22 +1,22 @@
 package com.pinion.bingfetcher.parse;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jsoup.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class ParseManager
 {
-	private static Logger logger = Logger.getLogger(ParseManager.class);
+	private static Log logger = LogFactory.getLog(ParseManager.class.getName());
 	
 	public static void getLinks(String html)
 	{
 		if(html == null) return;
 		Document doc = Jsoup.parse(html);
 		Element content = doc.getElementById("content");
-
+		if(content == null) return;
 		int results = 0;
 		
 		Elements links = content.getElementsByTag("a");
